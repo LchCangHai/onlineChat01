@@ -7,6 +7,7 @@ import myInfo from '../components/myInfo.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '/', redirect: '/chatSpace' },
   { path: '/chatSpace', component: chatSpace },
   { path: '/creatRoom', component: creatRoom },
   { path: '/myInfo', component: myInfo }

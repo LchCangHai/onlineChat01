@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="76px">
+      <el-aside width="70px">
         <div class="logo">
           <img src="./assets/logo.png" />
         </div>
@@ -70,6 +70,7 @@ export default {
 }
 .el-main {
   height: 100%;
+  width: calc(100% - 76px);
   padding: 0;
 }
 .functions {
@@ -94,7 +95,7 @@ i[class^='el-icon'] {
 }
 .active {
   color: #308fff;
-  font-weight: bold;
+  font-weight: bolder;
 }
 </style>
 
@@ -103,7 +104,7 @@ i[class^='el-icon'] {
     data () {
       return {
         isCollapse: true,
-        activeItem: 0,
+        activeItem: 2,
       }
     },
     methods: {
