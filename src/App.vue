@@ -3,7 +3,7 @@
     <el-container>
       <el-aside width="70px">
         <div class="logo">
-          <img src="./assets/logo.png" />
+          <img src="./assets/image/logo.png" />
         </div>
         <div class="functions">
           <i
