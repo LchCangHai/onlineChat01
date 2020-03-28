@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="main" :style="{width: toggle == true ? '75%' : '100%'}">
-      <div class="header1">
+      <div class="header">
         <div class="infoShow">
           <div class="avatar">
             <img :src="avatarURL" />
@@ -37,26 +37,38 @@
         </div>
         <div class="chatSpace">
           <div class="myChat">
-            <div class="avatar">
-              <img src="../assets/image/logo.png" />
-            </div>
             <div class="chatText">
-              <strong>{{roomData.name +"dsaghtrytjhgfdsfgggggggggg"}}</strong>
-              <span>{{roomData.memberNum + 'member(s)' + '-' + roomData.info}}</span>
+              <div class="chatName">mennanzhizhu</div>
+              dsaghtrytjssaghtrytjhgfdsfgggggggggasaghtrytjhgfdsfgggggggggghtrytjhgfdsfgggggggggsaghtrytjhgfdsfggggggggghgfdsfgggggggggg"}}
+              <div class="chatTime">{{roomData.memberNum + 'member(s)' + '-' + roomData.info}}</div>
+            </div>
+            <div class="chatAvatar">
+              <img src="../assets/image/vue.png" />
             </div>
           </div>
           <div class="otherChat">
-            <div class="chatText">
-              <strong>{{roomData.name +"dsaghtrytjhgfdsfgggggggggg"}}</strong>
-              <span>{{roomData.memberNum + 'member(s)' + '-' + roomData.info}}</span>
-            </div>
-            <div class="avatar">
+            <div class="chatAvatar">
               <img src="../assets/image/logo.png" />
+            </div>
+            <div class="chatText">
+              <div class="chatName">mennanzhizhu</div>
+              dsaghtrytjssaghtrytjhgfdsfgggggggggasaghtrytjhgfdsfgggggggggghtrytjhgfdsfgggggggggsaghtrytjhgfdsfggggggggghgfdsfgggggggggg"}}
+              <div class="chatTime">{{roomData.memberNum + 'member(s)' + '-' + roomData.info}}</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="footer"></div>
+      <div class="footer">
+        <VEmojiPicker class="emoji"
+        @select="selectEmoji"
+        v-show='isEmoji'></VEmojiPicker>
+      <div class="chatInput"></div>
+      <div class="chatHandle">
+        <span class="iconfont icon-emoji"></span>
+        <i class="el-icon-paperclip"></i>
+        <i class="el-icon-s-promotion"></i>
+      </div>
+      </div>
     </div>
     <div class="Raside" :style="{width: toggle == true ? '25%' : '0px'}" v-show="toggle">
       <div class="aside-header">
@@ -70,12 +82,15 @@
 </template>
 
 <script>
+import VEmojiPicker from 'v-emoji-picker'
+// import packData from 'v-emoji-picker/data/emojis.json'
 export default {
   data () {
     return {
       toggle: false,
       isSetInfo: false,
       isSearching: false,
+      isEmoji: false,
       avatarURL: require('../assets/image/vue.png'),
       myText: ' ',
       searchText: 'Search this chat',
@@ -113,6 +128,9 @@ export default {
     onInput(event) {
 
     }
+  },
+  components: {
+    VEmojiPicker
   }
 }
 </script>
@@ -135,7 +153,7 @@ export default {
 .main {
   height: 100%;
   border: 2px solid #f5f6fa;
-  .header1 {
+  .header {
     position: relative;
     height: 55px;
     width: 100%;
@@ -245,44 +263,92 @@ export default {
 .chatText {
   background-color: #f5f6fa;
 }
-.myChat {
-  width: calc(45%);
-  padding: 5px 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  position: relative;
-  left: 10px;
-  .chatText {
-    background-color: #f5f6fa;
-    color:#8f909a;
-    border-radius: 8px;
-    margin-right: 10px;
-    min-width: 100px;
-    padding:8px 5px;
-    text-align: left;
-    overflow: hidden;
+.chatAvatar {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  margin: 10px 10px;
+  img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
   }
 }
-.otherChat {
+.myChat {
   align-self: flex-end;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
   position: relative;
   right: 5px;
+  word-break: break-all;
+  max-width: 48%;
+  min-width: 400px;
+  margin: 10px 0;
+  color: #e2efff;
   .chatText {
     background-color: #0176ff;
-    color:white;
-    border-radius: 8px;
-    margin-left: 10px;
+    color: #c1ddff;
+    border-radius: 15px 15px 0;
+    padding: 20px 10px;
+    margin: 10px 0;
     height: auto;
-    min-width:100px;
-    padding:8px 5px;
+    min-width: 100px;
+    padding: 20px 15px;
     text-align: right;
     overflow: visible;
+    text-align: left;
+    font-size: 15px;
+    .chatName {
+      font-size: 17px;
+      font-weight: 600;
+      padding-bottom: 8px;
+      color: #fff;
+    }
+    .chatTime {
+      font-size: 12px;
+      color: #8dc1ff;
+      padding-top: 8px;
+    }
+  }
+}
+.otherChat {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  position: relative;
+  right: 5px;
+  word-break: break-all;
+  max-width: 48%;
+  min-width: 400px;
+  margin: 10px 0;
+  .chatText {
+    background-color: #f5f6fa;
+    color: #9c9ca7;
+    border-radius: 15px 15px 15px 0;
+    padding: 20px 10px;
+    margin: 10px 0;
+    height: auto;
+    min-width: 100px;
+    padding: 20px 15px;
+    text-align: right;
+    overflow: visible;
+    text-align: left;
+    font-size: 15px;
+    .chatName {
+      font-size: 17px;
+      font-weight: 600;
+      padding-bottom: 8px;
+      color: #575b68;
+    }
+    .chatTime {
+      font-size: 12px;
+      color: #bcbdc5;
+      padding-top: 8px;
+    }
   }
 }
 .footer {
@@ -309,5 +375,9 @@ export default {
     height: calc(100% - 55px);
     border-top: 2px solid #f5f6fa;
   }
+}
+.emoji{
+  position: absolute;
+  // top:-200px;
 }
 </style>
